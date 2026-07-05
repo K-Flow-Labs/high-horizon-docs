@@ -49,6 +49,9 @@ const languages = {
     secondaryAction: "View Current Implementation Logic",
     cardLabel: "Document",
     docListLabel: "Document list",
+    ciSectionLabel: "Brand CI videos",
+    ciTitle: "High Horizon Brand CI Videos",
+    ciDescription: "Short identity motion assets for the High Horizon public site and handoff materials.",
     footer: "Generated from High Horizon Obsidian documents. This is an operating draft, not legal advice."
   },
   ko: {
@@ -65,9 +68,41 @@ const languages = {
     secondaryAction: "현재 구현 로직 보기",
     cardLabel: "Document",
     docListLabel: "문서 목록",
+    ciSectionLabel: "브랜드 CI 영상",
+    ciTitle: "High Horizon 브랜드 CI 영상",
+    ciDescription: "High Horizon 공개 사이트와 전달 자료에 사용할 짧은 브랜드 아이덴티티 영상입니다.",
     footer: "Generated from High Horizon Obsidian documents. This is an operating draft, not legal advice."
   }
 };
+
+const ciVideos = [
+  {
+    file: "/videos/01-ci-logo-crown-reveal.mp4",
+    width: 1080,
+    height: 1920,
+    titles: {
+      en: "CI Logo Crown Reveal",
+      ko: "CI 로고 크라운 리빌"
+    },
+    descriptions: {
+      en: "Primary logo reveal motion asset.",
+      ko: "메인 로고 리빌 모션 자산입니다."
+    }
+  },
+  {
+    file: "/videos/04-clean-ci-bumper.mp4",
+    width: 1080,
+    height: 1920,
+    titles: {
+      en: "Clean CI Bumper",
+      ko: "클린 CI 범퍼"
+    },
+    descriptions: {
+      en: "Short clean bumper for quick brand transitions.",
+      ko: "짧은 브랜드 전환에 쓰는 클린 범퍼 영상입니다."
+    }
+  }
+];
 
 function escapeHtml(value) {
   return String(value)
@@ -324,6 +359,13 @@ h1{max-width:920px;margin:0;font-size:clamp(2rem,5vw,3.6rem);line-height:1.08;le
 .doc-card{display:flex;flex-direction:column;gap:10px;min-height:190px;padding:22px;border:1px solid var(--line);border-radius:8px;background:var(--surface);text-decoration:none;color:var(--text)}
 .doc-card:hover,.doc-card:focus-visible{border-color:var(--green);outline:0}
 .doc-card small{color:var(--green);font-weight:800}.doc-card h2{margin:0;font-size:24px;line-height:1.25}.doc-card p{margin:0;color:var(--muted)}
+.ci-section{padding:0 clamp(18px,4vw,48px) 72px}
+.ci-inner{display:grid;grid-template-columns:minmax(220px,320px) minmax(0,1fr);gap:22px;max-width:1120px;margin:0 auto}
+.ci-copy h2{margin:0;font-size:28px;line-height:1.25}.ci-copy p:last-child{margin-bottom:0;color:var(--muted)}
+.ci-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.ci-video-card{overflow:hidden;border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+.ci-video-card video{display:block;width:100%;height:auto;aspect-ratio:9/16;background:#202124;object-fit:cover}
+.ci-video-card div{padding:14px 16px}.ci-video-card h3{margin:0 0 4px;font-size:18px;line-height:1.3}.ci-video-card p{margin:0 0 8px;color:var(--muted);font-size:14px;line-height:1.6}.ci-video-card a{font-size:14px;font-weight:700}
 .article-shell{display:grid;grid-template-columns:minmax(0,1fr);max-width:1120px;margin:0 auto;padding:40px clamp(18px,4vw,48px) 72px}
 article{max-width:780px;width:100%;margin:0 auto}
 article h1{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:22px}
@@ -344,7 +386,8 @@ th{background:#f5f7f1;color:#1f4d38}
 tr:last-child td{border-bottom:0}
 .wiki-link{color:var(--green);font-weight:700}
 .site-footer{padding:24px clamp(18px,4vw,48px);border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
-@media (max-width:720px){.site-header{position:static;align-items:flex-start;flex-direction:column}.header-actions{justify-content:flex-start}.doc-nav{justify-content:flex-start}.doc-grid{grid-template-columns:1fr}.hero{padding-top:44px}.hero p{font-size:16px}article h2{font-size:24px}}
+@media (max-width:900px){.ci-inner{grid-template-columns:1fr}.ci-copy{max-width:560px}}
+@media (max-width:720px){.site-header{position:static;align-items:flex-start;flex-direction:column}.header-actions{justify-content:flex-start}.doc-nav{justify-content:flex-start}.doc-grid,.ci-video-grid{grid-template-columns:1fr}.hero{padding-top:44px}.hero p{font-size:16px}article h2{font-size:24px}}
 `;
 }
 
@@ -356,12 +399,22 @@ function writePage(langKey, slug, html) {
   writeFileSync(join(dir, "index.html"), html);
 }
 
+function copyPublicDir(sourceDir, targetDir) {
+  mkdirSync(targetDir, { recursive: true });
+  for (const entry of readdirSync(sourceDir, { withFileTypes: true })) {
+    const sourcePath = join(sourceDir, entry.name);
+    const targetPath = join(targetDir, entry.name);
+    if (entry.isDirectory()) {
+      copyPublicDir(sourcePath, targetPath);
+    } else if (entry.isFile()) {
+      copyFileSync(sourcePath, targetPath);
+    }
+  }
+}
+
 rmSync(distDir, { recursive: true, force: true });
 mkdirSync(distDir, { recursive: true });
-
-for (const file of readdirSync(publicDir)) {
-  copyFileSync(join(publicDir, file), join(distDir, file));
-}
+copyPublicDir(publicDir, distDir);
 
 for (const langKey of Object.keys(languages)) {
   const lang = languages[langKey];
@@ -370,6 +423,16 @@ for (const langKey of Object.keys(languages)) {
     <h2>${escapeHtml(doc.titles[langKey])}</h2>
     <p>${escapeHtml(doc.descriptions[langKey])}</p>
   </a>`).join("");
+  const videos = ciVideos.map((video) => `<article class="ci-video-card">
+    <video controls playsinline preload="metadata" width="${video.width}" height="${video.height}" aria-label="${escapeHtml(video.titles[langKey])}">
+      <source src="${video.file}" type="video/mp4">
+    </video>
+    <div>
+      <h3>${escapeHtml(video.titles[langKey])}</h3>
+      <p>${escapeHtml(video.descriptions[langKey])}</p>
+      <a href="${video.file}">MP4</a>
+    </div>
+  </article>`).join("");
 
   writePage(langKey, "index", layout({
     langKey,
@@ -387,6 +450,16 @@ for (const langKey of Object.keys(languages)) {
         </div>
       </div></section>
       <section class="doc-grid" aria-label="${escapeHtml(lang.docListLabel)}">${cards}</section>
+      <section class="ci-section" aria-label="${escapeHtml(lang.ciSectionLabel)}">
+        <div class="ci-inner">
+          <div class="ci-copy">
+            <p class="eyebrow">${escapeHtml(lang.ciSectionLabel)}</p>
+            <h2>${escapeHtml(lang.ciTitle)}</h2>
+            <p>${escapeHtml(lang.ciDescription)}</p>
+          </div>
+          <div class="ci-video-grid">${videos}</div>
+        </div>
+      </section>
     </main>`
   }));
 

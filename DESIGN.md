@@ -34,6 +34,7 @@ Public documentation site for High Horizon operating decisions. The surface shou
 - Language switcher: compact segmented links in the header.
 - Hero: unframed content band with two concise action links.
 - Document cards: flat white cards, 1px border, 8px radius.
+- CI video gallery: unframed section with flat white video cards, 1px border, 8px radius, and explicit 9:16 media sizing.
 - Article: readable single column, headings anchored by clear spacing.
 - Code blocks: preformatted dark text on warm neutral surface.
 - Tables: responsive horizontal scroll when needed.
