@@ -26,5 +26,4 @@ npm run build
 npx wrangler pages deploy dist --project-name high-horizon-docs --branch main
 ```
 
-Custom domain setup for `high-horizon.net` still has to be done in Cloudflare Pages > Custom domains after the first deployment.
-
+Custom domain setup uses `docs.high-horizon.net` so the existing `high-horizon.net` homepage remains untouched.

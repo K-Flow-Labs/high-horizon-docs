@@ -5,7 +5,7 @@ const root = new URL("..", import.meta.url).pathname;
 const contentDir = join(root, "src", "content");
 const distDir = join(root, "dist");
 const publicDir = join(root, "public");
-const siteUrl = "https://high-horizon.net";
+const siteUrl = "https://docs.high-horizon.net";
 
 const docs = [
   {

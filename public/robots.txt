@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://high-horizon.net/sitemap.xml
-
+Sitemap: https://docs.high-horizon.net/sitemap.xml
