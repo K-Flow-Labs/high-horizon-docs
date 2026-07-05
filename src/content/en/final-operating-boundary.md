@@ -362,9 +362,10 @@ and affected lessons are handled through make-up credits or refunds.
 - I am not an employee, agent, or exclusive teacher of High Horizon.
 - I prepare and manage my own lesson content and teaching method.
 - High Horizon supports booking, payment, notifications, Google Meet access, and dispute handling.
-- I issue invoices based on lessons or settlement periods, not a fixed monthly salary.
+- This is not a fixed-salary relationship; we work together under a B2B contract as separate independent businesses.
 - This is not an exclusive relationship; I may work with other students or platforms.
-- I confirm whether I can provide DTI/BIR registration details, invoices, or official receipts.
+- High Horizon will first review and proceed with the most suitable tax and settlement method through a tax accountant.
+- I will cooperate with non-sensitive documents needed to confirm the B2B contract and independent business status, excluding amount, bank account, currency, and fee details.
 - I am responsible for my Philippine tax reporting and liabilities.
 - I will report power outages or internet issues as soon as possible.
 - Late reporting, no-shows, or repeated cancellations may affect profile visibility or settlement.
@@ -379,8 +380,9 @@ The following items are not optional. They are the minimum confirmations that mu
 | Category | Question to confirm with the teacher | Used for |
 |---|---|---|
 | Independent status | Do you agree that you provide lessons as an independent teacher or independent business based in the Philippines, and that you are not an employee, agent, or exclusive teacher of High Horizon? | Contract and education-law boundary |
-| Tax/receipt evidence | Can you provide DTI/BIR registration, TIN, invoices, or official receipts? If not, what settlement evidence can you provide? | Settlement and tax review |
-| Settlement information | What is your settlement name, country, currency, account/remittance method, and fee responsibility standard? | Teacher settlement |
+| B2B contract | Do you agree that each teacher has their own independent business status and works with High Horizon through a B2B contract? | Contract structure |
+| Tax/settlement principle | Do you understand that High Horizon will first review and proceed with the most suitable tax and settlement method through a tax accountant? | Tax and settlement review |
+| Non-sensitive evidence | Can you cooperate with document requests needed to confirm the contract and independent business status, excluding amount, bank account, currency, and fee details? | Onboarding evidence |
 | Lesson ownership | Do you compose and take responsibility for your own lesson content, materials, and teaching method? | Marketplace boundary |
 | Availability | What days/times can you actually teach, what timezone do you use, what minimum booking lead time do you need, and how quickly can you approve 1:1 requests? | Booking UX |
 | Course limits | Do you agree to open IELTS courses only under the limits of under 30 days, under 30 teaching hours, up to 4 group students, and no auto-renewal/subscription? | Course package limits |
@@ -396,7 +398,7 @@ The following items are not optional. They are the minimum confirmations that mu
 
 ### 8.4 Pre-Launch Conclusion
 
-There are required items to confirm with Philippine teachers. At minimum, collect answers to the questionnaire above and verify independent teacher status, tax/settlement feasibility, lesson ownership, course limits, absence/outage response, and privacy/AI boundaries before publishing a teacher profile or opening lessons on the web service.
+There are required items to confirm with Philippine teachers. However, sensitive settlement information such as amount, bank account, currency, and fee details is known and managed separately by the operator, and should not be included in this questionnaire. At minimum, collect answers to the questionnaire above and verify independent teacher/B2B contract status, tax-accountant review premise, lesson ownership, course limits, absence/outage response, and privacy/AI boundaries before publishing a teacher profile or opening lessons on the web service.
 
 ## 9. Homepage Structure Revision
 
