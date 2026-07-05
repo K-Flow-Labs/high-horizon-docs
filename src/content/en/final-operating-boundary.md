@@ -372,6 +372,32 @@ and affected lessons are handled through make-up credits or refunds.
 - I will not create auto-renewing or subscription-style courses.
 - I will use student personal data and lesson records only for lesson delivery.
 
+### 8.3 Required Pre-Launch Questionnaire
+
+The following items are not optional. They are the minimum confirmations that must be collected before a teacher profile is published and lessons are opened. If answers are missing or evidence does not match, that teacher's profile, settlement, or lesson opening should be paused.
+
+| Category | Question to confirm with the teacher | Used for |
+|---|---|---|
+| Independent status | Do you agree that you provide lessons as an independent teacher or independent business based in the Philippines, and that you are not an employee, agent, or exclusive teacher of High Horizon? | Contract and education-law boundary |
+| Tax/receipt evidence | Can you provide DTI/BIR registration, TIN, invoices, or official receipts? If not, what settlement evidence can you provide? | Settlement and tax review |
+| Settlement information | What is your settlement name, country, currency, account/remittance method, and fee responsibility standard? | Teacher settlement |
+| Lesson ownership | Do you compose and take responsibility for your own lesson content, materials, and teaching method? | Marketplace boundary |
+| Availability | What days/times can you actually teach, what timezone do you use, what minimum booking lead time do you need, and how quickly can you approve 1:1 requests? | Booking UX |
+| Course limits | Do you agree to open IELTS courses only under the limits of under 30 days, under 30 teaching hours, up to 4 group students, and no auto-renewal/subscription? | Course package limits |
+| Absence/cancellation | How early can you report that you cannot teach? Do you agree that no-shows or repeated cancellations may limit profile exposure or pause settlement? | Refund and make-up policy |
+| Power/internet outage | Can you immediately report power or internet issues in Baguio or your local area? Do you have backup options such as mobile data or an alternate location? | Baguio Class Status Board |
+| Public status notice | Do you agree that your personal address remains private, but area-level connectivity status and affected time windows may be shown to students? | Outage notices |
+| Lesson tools | Can you reliably use Google Meet, receive Calendar invitations, check email, and teach with working camera, microphone, and headset? | Lesson operations |
+| Personal data | Do you agree not to store, share, or reuse student personal data, lesson records, emails, or Meet links except for lesson delivery? | Cross-border privacy |
+| Recording/AI | Do you understand that lesson recording or AI transcription/correction tools require student consent? Do you agree that AI is only a teacher aid and not a lesson replacement? | AI feature boundary |
+| Profile claims | Can you provide evidence for profile claims such as experience, education, certificates, Supervisor background, or IELTS scores? | Advertising risk |
+| No score guarantee | Do you agree not to use IELTS target-score guarantees, pass guarantees, or guaranteed score-improvement language? | Advertising and dispute prevention |
+| Dispute support | Do you agree to provide attendance, lesson progress, student feedback, and outage report records when refund or dispute handling requires them? | Support and refunds |
+
+### 8.4 Pre-Launch Conclusion
+
+There are required items to confirm with Philippine teachers. At minimum, collect answers to the questionnaire above and verify independent teacher status, tax/settlement feasibility, lesson ownership, course limits, absence/outage response, and privacy/AI boundaries before publishing a teacher profile or opening lessons on the web service.
+
 ## 9. Homepage Structure Revision
 
 ### 9.1 Hero
