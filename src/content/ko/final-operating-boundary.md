@@ -356,15 +356,16 @@ and affected lessons are handled through make-up credits or refunds.
 - 자동갱신/구독형 과정은 만들지 않는다.
 - 학생 개인정보와 수업 기록은 수업 제공 목적에만 사용한다.
 
-### 8.2 English checklist for teachers
+### 8.2 English Checklist for Teachers
 
 - I provide lessons as an independent teacher or independent contractor based in the Philippines.
 - I am not an employee, agent, or exclusive teacher of High Horizon.
 - I prepare and manage my own lesson content and teaching method.
 - High Horizon supports booking, payment, notifications, Google Meet access, and dispute handling.
-- I issue invoices based on lessons or settlement periods, not a fixed monthly salary.
+- This is not a fixed-salary relationship; we work together under a B2B contract as separate independent businesses.
 - This is not an exclusive relationship; I may work with other students or platforms.
-- I confirm whether I can provide DTI/BIR registration details, invoices, or official receipts.
+- High Horizon will first review and proceed with the most suitable tax and settlement method through a tax accountant.
+- I will cooperate with non-sensitive documents needed to confirm the B2B contract and independent business status, excluding amount, bank account, currency, and fee details.
 - I am responsible for my Philippine tax reporting and liabilities.
 - I will report power outages or internet issues as soon as possible.
 - Late reporting, no-shows, or repeated cancellations may affect profile visibility or settlement.

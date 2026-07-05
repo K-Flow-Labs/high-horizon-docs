@@ -340,21 +340,22 @@ and affected lessons are handled through make-up credits or refunds.
 
 ## 8. Items to Confirm With Philippine Teachers
 
-### 8.1 Korean Checklist
+### 8.1 한국어 체크리스트
 
-- I provide lessons as an independent teacher/independent business operator residing in the Philippines.
-- I am not an employee, agent, or exclusive teacher of High Horizon.
-- I compose my own lesson content and lesson method.
-- High Horizon supports booking, payment, notifications, Google Meet connection, and dispute handling.
-- I issue invoices based on lessons/settlement, not a fixed monthly salary.
-- This is not an exclusive contract, and I may also work with other platforms/students.
-- I confirm whether DTI/BIR registration or invoice/receipt issuance is possible.
-- I am responsible for Philippine tax filing and payment.
-- If a power outage/internet disruption occurs, I report it immediately.
-- Delayed reporting, unauthorized absence, or repeated cancellations may affect profile exposure or settlement.
-- Courses are opened only under the standards of under 30 days, under 30 hours, and group maximum of 4 people.
-- I will not create automatic renewal/subscription-style courses.
-- I will use student personal information and lesson records only for lesson provision purposes.
+- 본인은 필리핀 거주 독립 강사/독립사업자로 수업을 제공한다.
+- High Horizon의 직원, 대리인, 전속 강사가 아니다.
+- 본인의 수업 내용과 수업 방식은 본인이 구성한다.
+- High Horizon은 예약, 결제, 알림, Google Meet 연결, 분쟁 처리를 지원한다.
+- 고정 월급 관계가 아니라 각자 개인사업자/독립사업자로서 B2B 계약 기준으로 협업한다.
+- 독점 계약이 아니며, 다른 플랫폼/학생과도 일할 수 있다.
+- 세무 및 정산 방식은 High Horizon이 세무사를 통해 가장 적합한 방식으로 우선 검토·진행한다.
+- 선생님은 금액·계좌 등 민감 정보가 아닌, B2B 계약과 독립사업자 지위 확인에 필요한 자료 제공에 협조한다.
+- 필리핀 세금 신고와 납부 책임은 본인에게 있다.
+- 정전/인터넷 장애가 생기면 즉시 신고한다.
+- 신고 지연, 무단 결석, 반복 취소 시 프로필 노출이나 정산에 영향을 줄 수 있다.
+- 과정은 30일 미만, 30시간 미만, 그룹 최대 4명 기준으로만 개설한다.
+- 자동갱신/구독형 과정은 만들지 않는다.
+- 학생 개인정보와 수업 기록은 수업 제공 목적에만 사용한다.
 
 ### 8.2 English Checklist for Teachers
 
