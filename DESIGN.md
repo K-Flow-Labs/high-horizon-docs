@@ -31,6 +31,7 @@ Public documentation site for High Horizon operating decisions. The surface shou
 
 - Header: sticky, white surface, subtle bottom border.
 - Document nav: compact links with current page state.
+- Language switcher: compact segmented links in the header.
 - Hero: unframed content band with two concise action links.
 - Document cards: flat white cards, 1px border, 8px radius.
 - Article: readable single column, headings anchored by clear spacing.
@@ -47,4 +48,3 @@ Public documentation site for High Horizon operating decisions. The surface shou
 ## Accepted Debt
 
 - Mermaid blocks are shown as source code for now. Add Mermaid rendering only when diagrams become a primary public feature.
-

@@ -11,16 +11,63 @@ const docs = [
   {
     file: "final-operating-boundary.md",
     slug: "final-operating-boundary",
-    title: "High Horizon 최종 운영 경계와 홈페이지 정리",
-    description: "마켓플레이스 운영 경계, 홈페이지 문구, AI 기능 분리, 환불과 정전 대응 정리"
+    titles: {
+      en: "High Horizon Final Operating Boundary and Homepage Summary",
+      ko: "High Horizon 최종 운영 경계와 홈페이지 정리"
+    },
+    descriptions: {
+      en: "Marketplace operating boundary, homepage copy, AI feature separation, refunds, and outage response",
+      ko: "마켓플레이스 운영 경계, 홈페이지 문구, AI 기능 분리, 환불과 정전 대응 정리"
+    }
   },
   {
     file: "current-implementation-logic.md",
     slug: "current-implementation-logic",
-    title: "High Horizon 현재 구현 로직 분석",
-    description: "Django 구현 기준 인증, 예약, 결제, 코스, 환불, Google Meet 연동 로직 지도"
+    titles: {
+      en: "High Horizon Current Implementation Logic Analysis",
+      ko: "High Horizon 현재 구현 로직 분석"
+    },
+    descriptions: {
+      en: "Code-based map of Django authentication, booking, payment, courses, refunds, and Google Meet integration",
+      ko: "Django 구현 기준 인증, 예약, 결제, 코스, 환불, Google Meet 연동 로직 지도"
+    }
   }
 ];
+
+const languages = {
+  en: {
+    label: "English",
+    prefix: "",
+    lang: "en",
+    navLabel: "Documents",
+    brandSub: "Public Docs",
+    eyebrow: "Operating Draft",
+    homeTitle: "High Horizon Public Operating Documents",
+    homeDescription: "Public notes on High Horizon operating boundaries and implementation logic",
+    homeIntro: "Marketplace boundaries, homepage copy, refund and make-up rules, Baguio outage response, and current implementation logic are collected in one place.",
+    primaryAction: "View Final Operating Boundary",
+    secondaryAction: "View Current Implementation Logic",
+    cardLabel: "Document",
+    docListLabel: "Document list",
+    footer: "Generated from High Horizon Obsidian documents. This is an operating draft, not legal advice."
+  },
+  ko: {
+    label: "한국어",
+    prefix: "/ko",
+    lang: "ko",
+    navLabel: "문서",
+    brandSub: "Public Docs",
+    eyebrow: "Operating Draft",
+    homeTitle: "High Horizon 공개 운영 문서",
+    homeDescription: "High Horizon 운영 경계와 구현 로직을 정리한 공개 문서",
+    homeIntro: "학원형 운영으로 보이지 않도록 마켓플레이스 경계, 홈페이지 문구, 환불/보강, Baguio 정전 대응, 현재 구현 로직을 한곳에 모았습니다.",
+    primaryAction: "최종 운영 경계 보기",
+    secondaryAction: "현재 구현 로직 보기",
+    cardLabel: "Document",
+    docListLabel: "문서 목록",
+    footer: "Generated from High Horizon Obsidian documents. This is an operating draft, not legal advice."
+  }
+};
 
 function escapeHtml(value) {
   return String(value)
@@ -187,39 +234,61 @@ function renderMarkdown(markdown) {
   return output.join("\n");
 }
 
-function layout({ title, description, body, activeSlug }) {
+function pagePath(langKey, slug = "index") {
+  const prefix = languages[langKey].prefix;
+  if (slug === "index") return `${prefix || ""}/`;
+  return `${prefix}/${slug}/`.replace("//", "/");
+}
+
+function absoluteUrl(langKey, slug = "index") {
+  return `${siteUrl}${pagePath(langKey, slug)}`;
+}
+
+function layout({ langKey, title, description, body, activeSlug }) {
+  const lang = languages[langKey];
   const nav = docs.map((doc) => {
-    const href = doc.slug === "index" ? "/" : `/${doc.slug}/`;
+    const href = pagePath(langKey, doc.slug);
     const active = doc.slug === activeSlug ? " aria-current=\"page\"" : "";
-    return `<a${active} href="${href}">${escapeHtml(doc.title.replace("High Horizon ", ""))}</a>`;
+    return `<a${active} href="${href}">${escapeHtml(doc.titles[langKey].replace("High Horizon ", ""))}</a>`;
+  }).join("");
+  const switcher = Object.entries(languages).map(([key, value]) => {
+    const href = pagePath(key, activeSlug);
+    const active = key === langKey ? " aria-current=\"true\"" : "";
+    return `<a${active} href="${href}" hreflang="${value.lang}">${escapeHtml(value.label)}</a>`;
   }).join("");
 
   return `<!doctype html>
-<html lang="ko">
+<html lang="${lang.lang}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(title)} | High Horizon Docs</title>
   <meta name="description" content="${escapeHtml(description)}">
-  <link rel="canonical" href="${siteUrl}${activeSlug === "index" ? "/" : `/${activeSlug}/`}">
+  <link rel="canonical" href="${absoluteUrl(langKey, activeSlug)}">
+  <link rel="alternate" hreflang="en" href="${absoluteUrl("en", activeSlug)}">
+  <link rel="alternate" hreflang="ko" href="${absoluteUrl("ko", activeSlug)}">
+  <link rel="alternate" hreflang="x-default" href="${absoluteUrl("en", activeSlug)}">
   <meta property="og:title" content="${escapeHtml(title)}">
   <meta property="og:description" content="${escapeHtml(description)}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="${siteUrl}${activeSlug === "index" ? "/" : `/${activeSlug}/`}">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23202124'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='20' font-weight='700' fill='white'%3EHH%3C/text%3E%3C/svg%3E">
+  <meta property="og:url" content="${absoluteUrl(langKey, activeSlug)}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <style>${css()}</style>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="/" aria-label="High Horizon Docs">
       <span class="brand-mark">HH</span>
-      <span><strong>High Horizon</strong><small>Public Docs</small></span>
+      <span><strong>High Horizon</strong><small>${escapeHtml(lang.brandSub)}</small></span>
     </a>
-    <nav class="doc-nav" aria-label="문서">${nav}</nav>
+    <div class="header-actions">
+      <nav class="doc-nav" aria-label="${escapeHtml(lang.navLabel)}">${nav}</nav>
+      <nav class="language-switch" aria-label="Language">${switcher}</nav>
+    </div>
   </header>
   ${body}
   <footer class="site-footer">
-    <p>Generated from High Horizon Obsidian documents. This is an operating draft, not legal advice.</p>
+    <p>${escapeHtml(lang.footer)}</p>
   </footer>
 </body>
 </html>`;
@@ -236,9 +305,13 @@ a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}
 .brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
 .brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:8px;background:var(--text);color:white;font-weight:800;font-size:13px}
 .brand strong,.brand small{display:block;line-height:1.1}.brand small{margin-top:3px;color:var(--muted);font-size:12px}
+.header-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:flex-end}
 .doc-nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
 .doc-nav a{padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--text);font-size:14px;text-decoration:none}
 .doc-nav a[aria-current=page]{border-color:var(--green);color:var(--green);font-weight:700}
+.language-switch{display:flex;gap:4px;padding:3px;border:1px solid var(--line);border-radius:999px;background:#f7f6f1}
+.language-switch a{padding:5px 9px;border-radius:999px;color:var(--muted);font-size:13px;font-weight:700;text-decoration:none}
+.language-switch a[aria-current=true]{background:var(--text);color:white}
 .hero{padding:72px clamp(18px,4vw,48px) 44px;border-bottom:1px solid var(--line)}
 .hero-inner{max-width:1120px;margin:0 auto}
 .eyebrow{margin:0 0 12px;color:var(--green);font-weight:800;letter-spacing:0;text-transform:uppercase;font-size:13px}
@@ -271,12 +344,14 @@ th{background:#f5f7f1;color:#1f4d38}
 tr:last-child td{border-bottom:0}
 .wiki-link{color:var(--green);font-weight:700}
 .site-footer{padding:24px clamp(18px,4vw,48px);border-top:1px solid var(--line);color:var(--muted);font-size:14px;text-align:center}
-@media (max-width:720px){.site-header{position:static;align-items:flex-start;flex-direction:column}.doc-nav{justify-content:flex-start}.doc-grid{grid-template-columns:1fr}.hero{padding-top:44px}.hero p{font-size:16px}article h2{font-size:24px}}
+@media (max-width:720px){.site-header{position:static;align-items:flex-start;flex-direction:column}.header-actions{justify-content:flex-start}.doc-nav{justify-content:flex-start}.doc-grid{grid-template-columns:1fr}.hero{padding-top:44px}.hero p{font-size:16px}article h2{font-size:24px}}
 `;
 }
 
-function writePage(slug, html) {
-  const dir = slug === "index" ? distDir : join(distDir, slug);
+function writePage(langKey, slug, html) {
+  const dir = slug === "index"
+    ? join(distDir, languages[langKey].prefix)
+    : join(distDir, languages[langKey].prefix, slug);
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "index.html"), html);
 }
@@ -288,41 +363,49 @@ for (const file of readdirSync(publicDir)) {
   copyFileSync(join(publicDir, file), join(distDir, file));
 }
 
-const cards = docs.map((doc) => `<a class="doc-card" href="/${doc.slug}/">
-  <small>Document</small>
-  <h2>${escapeHtml(doc.title)}</h2>
-  <p>${escapeHtml(doc.description)}</p>
-</a>`).join("");
+for (const langKey of Object.keys(languages)) {
+  const lang = languages[langKey];
+  const cards = docs.map((doc) => `<a class="doc-card" href="${pagePath(langKey, doc.slug)}">
+    <small>${escapeHtml(lang.cardLabel)}</small>
+    <h2>${escapeHtml(doc.titles[langKey])}</h2>
+    <p>${escapeHtml(doc.descriptions[langKey])}</p>
+  </a>`).join("");
 
-writePage("index", layout({
-  activeSlug: "index",
-  title: "High Horizon 공개 운영 문서",
-  description: "High Horizon 운영 경계와 구현 로직을 정리한 공개 문서",
-  body: `<main>
-    <section class="hero"><div class="hero-inner">
-      <p class="eyebrow">Operating Draft</p>
-      <h1>High Horizon 공개 운영 문서</h1>
-      <p>학원형 운영으로 보이지 않도록 마켓플레이스 경계, 홈페이지 문구, 환불/보강, Baguio 정전 대응, 현재 구현 로직을 한곳에 모았습니다.</p>
-      <div class="actions">
-        <a class="button primary" href="/final-operating-boundary/">최종 운영 경계 보기</a>
-        <a class="button" href="/current-implementation-logic/">현재 구현 로직 보기</a>
-      </div>
-    </div></section>
-    <section class="doc-grid" aria-label="문서 목록">${cards}</section>
-  </main>`
-}));
-
-for (const doc of docs) {
-  const markdown = readFileSync(join(contentDir, doc.file), "utf8");
-  writePage(doc.slug, layout({
-    activeSlug: doc.slug,
-    title: doc.title,
-    description: doc.description,
-    body: `<main class="article-shell"><article>${renderMarkdown(markdown)}</article></main>`
+  writePage(langKey, "index", layout({
+    langKey,
+    activeSlug: "index",
+    title: lang.homeTitle,
+    description: lang.homeDescription,
+    body: `<main>
+      <section class="hero"><div class="hero-inner">
+        <p class="eyebrow">${escapeHtml(lang.eyebrow)}</p>
+        <h1>${escapeHtml(lang.homeTitle)}</h1>
+        <p>${escapeHtml(lang.homeIntro)}</p>
+        <div class="actions">
+          <a class="button primary" href="${pagePath(langKey, "final-operating-boundary")}">${escapeHtml(lang.primaryAction)}</a>
+          <a class="button" href="${pagePath(langKey, "current-implementation-logic")}">${escapeHtml(lang.secondaryAction)}</a>
+        </div>
+      </div></section>
+      <section class="doc-grid" aria-label="${escapeHtml(lang.docListLabel)}">${cards}</section>
+    </main>`
   }));
+
+  for (const doc of docs) {
+    const markdown = readFileSync(join(contentDir, langKey, doc.file), "utf8");
+    writePage(langKey, doc.slug, layout({
+      langKey,
+      activeSlug: doc.slug,
+      title: doc.titles[langKey],
+      description: doc.descriptions[langKey],
+      body: `<main class="article-shell"><article>${renderMarkdown(markdown)}</article></main>`
+    }));
+  }
 }
 
-const sitemap = [`${siteUrl}/`, ...docs.map((doc) => `${siteUrl}/${doc.slug}/`)]
+const sitemap = Object.keys(languages).flatMap((langKey) => [
+  absoluteUrl(langKey),
+  ...docs.map((doc) => absoluteUrl(langKey, doc.slug))
+])
   .map((loc) => `<url><loc>${loc}</loc></url>`)
   .join("");
 writeFileSync(join(distDir, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemap}</urlset>`);

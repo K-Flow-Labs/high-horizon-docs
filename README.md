@@ -2,6 +2,8 @@
 
 Public static documentation for High Horizon operating boundaries and implementation notes.
 
+Default pages are English. Korean pages are available under `/ko/`.
+
 ## Build
 
 ```bash
